@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join a committee</title>
+<style>
+  body{margin:0;font-family:system-ui,sans-serif;background:#F4F5FA;color:#151827;display:flex;min-height:100vh;align-items:center;justify-content:center;padding:20px;box-sizing:border-box}
+  main{max-width:420px;width:100%;background:#fff;border:1px solid #DEE0EC;border-radius:20px;padding:24px}
+  h1{margin:0 0 8px;font-size:22px}
+  p{line-height:1.5;color:#2D3250}
+  a.btn{display:block;text-align:center;background:#3B3FA8;color:#fff;text-decoration:none;font-weight:700;border-radius:14px;padding:16px;margin:16px 0}
+  code{display:block;word-break:break-all;background:#F4F5FA;border-radius:10px;padding:10px;font-size:13px}
+</style>
+</head>
+<body>
+<main>
+  <h1>You are invited to a committee</h1>
+  <p>Open this link on the phone where the Committee app is installed.</p>
+  <a class="btn" id="open" href="#">Open in the Committee app</a>
+  <p>If the button does nothing, open the app, tap <b>I have an invite</b> and paste this code:</p>
+  <code id="code"></code>
+</main>
+<script>
+  var t = new URLSearchParams(location.search).get('token') || '';
+  var link = 'io.committee.app://app/join?token=' + encodeURIComponent(t);
+  document.getElementById('open').href = link;
+  document.getElementById('code').textContent = t || '(no code in this link)';
+  if (t) setTimeout(function () { location.href = link; }, 400);
+</script>
+</body>
+</html>
